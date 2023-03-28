@@ -11,15 +11,23 @@ void pza_uart_init(pza_uart_t *regs)
 {
     regs->id = PZA_UART_ADDRESS;
     memcpy(regs->identifier.content.magic, pza_uart_magic, sizeof(pza_uart_magic));
-    regs->identifier.content.bufferSize = 64;
+    // regs->identifier.content.bufferSize = 64;
     pza_platform_uart_init(regs->control.content.baudrate);
     pza_interface_bind_uart(regs);
 }
 
 void pza_uart_run(pza_uart_t *regs)
 {
-    if(strlen(regs->control.content.write))
+    if(regs->control.content.writeSize)
     {
-        pza_platform_uart_write(regs->control.content.write, strlen(regs->control.content.write));
+        pza_platform_uart_write(regs->control.content.write, regs->control.content.writeSize);
+        memset(regs->control.content.write, 0, regs->control.content.writeSize);
+        regs->control.content.writeSize = 0;
+    }
+
+    if(regs->control.content.readSize)
+    {
+        pza_platform_uart_read(regs->identifier.content.read, &regs->control.content.readSize);
+        // regs->control.content.readSize = 0;
     }
 }

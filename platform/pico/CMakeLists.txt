@@ -19,6 +19,7 @@ target_link_libraries(panduza_platform_pico INTERFACE
     pico_bootrom
     hardware_uart
     hardware_spi
+    hardware_dma
     modbus
 )
 
@@ -28,6 +29,7 @@ target_link_libraries(panduza_platform_pico PRIVATE
     pico_bootrom_headers
     hardware_uart_headers
     hardware_spi_headers
+    hardware_dma_headers
     modbus
     tinyusb_device_unmarked
 )

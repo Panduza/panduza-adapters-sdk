@@ -6,10 +6,11 @@
 static modbusController_t controller = {0};
 static modbusDevice_t devices[254] = {0};
 
-static uint8_t RWAccessMask[MODBUS_RTU_ADU_MAX] = {-1};
+static uint8_t RWAccessMask[MODBUS_RTU_ADU_MAX] = {0xFF};
 
 void pza_interface_init(void)
 {
+    for(int i=0; i<MODBUS_RTU_ADU_MAX; i++) RWAccessMask[i] = 0xFF;
     modbus_init(&controller);
     modbus_register_platform(&controller, pza_platform_modbus_read, pza_platform_modbus_write);
 }
