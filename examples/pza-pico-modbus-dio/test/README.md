@@ -10,9 +10,9 @@ GPIO's are connected 2 by 2 throught 1KΩ resistor.
 Firmware mount 2 serial port (/dev/ttyACM0 and /dev/ttyACM1)
 You need to open /dev/ttyACM0 in a terminal to make the firmware run:
     Example:
-    ```bash
-    minicom -D /dev/ttyACM0 -b 115200
-    ```
+```bash
+minicom -D /dev/ttyACM0 -b 115200
+```
 
 Then:
 ```bash
