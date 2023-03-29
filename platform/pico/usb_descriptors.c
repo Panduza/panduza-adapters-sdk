@@ -32,11 +32,31 @@
  *   [MSB]       MIDI | HID | MSC | CDC          [LSB]
  */
 #define _PID_MAP(itf, n)  ( (CFG_TUD_##itf) << (n) )
+#ifndef USB_PID
 #define USB_PID           (0x4000 | _PID_MAP(CDC, 0) | _PID_MAP(MSC, 1) | _PID_MAP(HID, 2) | \
                            _PID_MAP(MIDI, 3) | _PID_MAP(VENDOR, 4) )
+#endif
 
+#ifndef USB_VID
 #define USB_VID   0xCafe
+#endif
 #define USB_BCD   0x0200
+
+#ifndef MANUFACTURER
+#define MANUFACTURER "TinyUSB"
+#endif
+
+#ifndef PRODUCT
+#define PRODUCT "TinyUSB Device"
+#endif
+
+#ifndef SERIAL_ID
+#define SERIAL_ID "123456"
+#endif
+
+#ifndef CDC_INTERFACE
+#define CDC_INTERFACE "TinyUSB CDC"
+#endif
 
 //--------------------------------------------------------------------+
 // Device Descriptors
@@ -183,10 +203,10 @@ uint8_t const * tud_descriptor_configuration_cb(uint8_t index)
 char const* string_desc_arr [] =
 {
   (const char[]) { 0x09, 0x04 }, // 0: is supported language is English (0x0409)
-  "TinyUSB",                     // 1: Manufacturer
-  "TinyUSB Device",              // 2: Product
-  "123456",                      // 3: Serials, should use chip ID
-  "TinyUSB CDC",                 // 4: CDC Interface
+  MANUFACTURER,                  // 1: Manufacturer
+  PRODUCT,                       // 2: Product
+  SERIAL_ID,                      // 3: Serials, should use chip ID
+  CDC_INTERFACE,                 // 4: CDC Interface
 };
 
 static uint16_t _desc_str[32];
