@@ -7,6 +7,7 @@ target_sources(panduza_platform_pico PUBLIC
     ${CMAKE_CURRENT_LIST_DIR}/usb_descriptors.c
     ${CMAKE_CURRENT_LIST_DIR}/uart.c
     ${CMAKE_CURRENT_LIST_DIR}/spi.c
+    ${CMAKE_CURRENT_LIST_DIR}/i2c.c
 )
 
 target_include_directories(panduza_platform_pico PUBLIC
@@ -19,6 +20,7 @@ target_link_libraries(panduza_platform_pico INTERFACE
     pico_bootrom
     hardware_uart
     hardware_spi
+    hardware_i2c
     modbus
 )
 
@@ -28,6 +30,7 @@ target_link_libraries(panduza_platform_pico PRIVATE
     pico_bootrom_headers
     hardware_uart_headers
     hardware_spi_headers
+    hardware_i2c_headers
     modbus
     tinyusb_device_unmarked
 )
