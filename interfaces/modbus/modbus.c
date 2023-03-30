@@ -2,6 +2,7 @@
 #include "panduza/platform/platform_modbus.h"
 #include "panduza/dio.h"
 #include "panduza/uart.h"
+#include "panduza/i2c.h"
 
 static modbusController_t controller = {0};
 static modbusDevice_t devices[254] = {0};
@@ -39,7 +40,7 @@ void pza_interface_bind_uart(pza_uart_t *regs)
     modbus_add_device(&controller, device);
 }
 
-void pza_interface_bind_i2c(pza_uart_t *regs)
+void pza_interface_bind_i2c(pza_i2c_t *regs)
 {
     modbusDevice_t *device = &devices[regs->id];
     device->address = regs->id;
