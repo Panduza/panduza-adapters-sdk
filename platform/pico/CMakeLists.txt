@@ -31,3 +31,14 @@ target_link_libraries(panduza_platform_pico PRIVATE
     modbus
     tinyusb_device_unmarked
 )
+
+# USB definition
+target_compile_definitions(panduza_platform_pico PUBLIC USB_PID=0x16C0) # ID_VENDOR
+target_compile_definitions(panduza_platform_pico PUBLIC USB_VID=0x05E1) # ID_MODEL_ID
+target_compile_definitions(panduza_platform_pico PUBLIC MANUFACTURER="panduza.io") # ID_VENDOR
+target_compile_definitions(panduza_platform_pico PUBLIC PRODUCT="dio-modbus") #ID_MODEL
+
+# add_definitions(-USB_PID=0x16C0) # ID_VENDOR_ID
+# add_definitions(-DUSBD_PID=0x05E1) # ID_MODEL_ID
+# add_definitions(-DUSBD_MANUFACTURER="panduza.io") # ID_VENDOR
+# add_definitions(-DUSBD_PRODUCT="dio-modbus") # ID_MODEL
