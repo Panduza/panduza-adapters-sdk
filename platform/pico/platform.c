@@ -1,5 +1,4 @@
 #include <pico/stdlib.h>
-
 #include "hardware/uart.h"
 
 
@@ -19,12 +18,12 @@ void pza_platform_init(void)
     stdio_init_all();
 
     uart_init(UART_ID, BAUD_RATE);
-    
+
     gpio_set_function(UART_TX_PIN, GPIO_FUNC_UART);
     gpio_set_function(UART_RX_PIN, GPIO_FUNC_UART);
 
-    while(1){
-        debugUART("uart debug \r\n");
-    }
+    // while(1){
+    //     debugUART("uart debug \r\n");
+    // }
 
 }

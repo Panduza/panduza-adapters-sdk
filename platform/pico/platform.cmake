@@ -29,22 +29,7 @@ macro(panduza_platfrom_init TARGET)
     pico_find_compiler(PICO_COMPILER_GDB arm-none-eabi-gdb)
     set(CMAKE_DEBUGGER ${PICO_COMPILER_GDB} CACHE FILEPATH "path to gdb")
 
-    # target_compile_definitions(${TARGET} PUBLIC
-    #     -DCFG_TUSB_CONFIG_FILE="pico_tusb_config.h"
-    #     # -DPICO_STDIO_USB_CONNECT_WAIT_TIMEOUT_MS=-1 # wait in stdio_usb_init until usb is connected
-    #     # -DPICO_STDIO_USB_POST_CONNECT_WAIT_DELAY_MS=1000 # wait 1s AFTER the usb is conected
-    #     -DPICO_STDIO_USB_LOW_PRIORITY_IRQ=0x1f
-    # )
-
-    target_compile_definitions(panduza_platform_pico PUBLIC
-        -DCFG_TUSB_CONFIG_FILE="pico_tusb_config.h"
-        # -DPICO_STDIO_USB_CONNECT_WAIT_TIMEOUT_MS=-1 # wait in stdio_usb_init until usb is connected
-        # -DPICO_STDIO_USB_POST_CONNECT_WAIT_DELAY_MS=1000 # wait 1s AFTER the usb is conected
-        -DPICO_STDIO_USB_LOW_PRIORITY_IRQ=0x1f
-    )
-
     # # disable usb output, enable uart output
-    
     pico_enable_stdio_uart(${TARGET} 1)
     pico_enable_stdio_usb(${TARGET} 1)
 
@@ -62,12 +47,9 @@ macro(panduza_platfrom_init TARGET)
         ${TARGET}.uf2
     )
 
-
-
-    # exclude stdio_usb_descriptors.c from compilation of pico_stdio_usb lib to use mine instead
-    set_source_files_properties(
-        ${pico-sdk_SOURCE_DIR}/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c
-        PROPERTIES HEADER_FILE_ONLY ON
-    )
+    add_definitions(-DUSBD_VID=0x16C0) # ID_VENDOR_ID
+    add_definitions(-DUSBD_PID=0x05E1) # ID_MODEL_ID
+    add_definitions(-DUSBD_MANUFACTURER="panduza.io") # ID_VENDOR
+    add_definitions(-DUSBD_PRODUCT="dio-modbus") # ID_MODEL
 
 endmacro()

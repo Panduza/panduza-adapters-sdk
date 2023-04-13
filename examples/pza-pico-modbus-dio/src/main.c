@@ -9,7 +9,6 @@ int main()
 {
     pza_platform_init();
     pza_interface_init();
-    tusb_init();
     
     // init the panduza dio modbus device and regs + bind
     pza_dio_t dio = {0};
