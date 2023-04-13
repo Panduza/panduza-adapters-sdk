@@ -44,8 +44,9 @@ macro(panduza_platfrom_init TARGET)
     )
 
     # # disable usb output, enable uart output
-    # pico_enable_stdio_uart(${TARGET} 1)
-    # pico_enable_stdio_usb(${TARGET} 0)
+    
+    pico_enable_stdio_uart(${TARGET} 1)
+    pico_enable_stdio_usb(${TARGET} 1)
 
     # create uf2 
     pico_add_uf2_output(${TARGET} )
@@ -60,6 +61,8 @@ macro(panduza_platfrom_init TARGET)
         ${TARGET}.hex
         ${TARGET}.uf2
     )
+
+
 
     # exclude stdio_usb_descriptors.c from compilation of pico_stdio_usb lib to use mine instead
     set_source_files_properties(

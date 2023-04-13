@@ -6,7 +6,7 @@
 #include "modbus/modbus.h"
 #include "hardware/timer.h"
 
-#define MODBUS_PORT 1
+#define MODBUS_PORT 0
 
 int64_t pza_platform_modbus_alarm(alarm_id_t alarm_num, void *user_data)
 {
@@ -16,6 +16,7 @@ int64_t pza_platform_modbus_alarm(alarm_id_t alarm_num, void *user_data)
 
 uint32_t pza_platform_modbus_read(modbusController_t *controller, uint8_t *buf, uint8_t len)
 {
+    tusb_init();
     uint32_t count=0;
     if (tud_cdc_n_connected(MODBUS_PORT))
     {
@@ -43,7 +44,7 @@ uint32_t pza_platform_modbus_write(modbusController_t *controller, const uint8_t
             );
         remaining -= ret;
     } while(remaining);
-    tud_task();
+    // tud_task();
     tud_cdc_n_write_flush(MODBUS_PORT);
     irq_set_enabled(PICO_STDIO_USB_LOW_PRIORITY_IRQ, true);
     // irq_set_pending(PICO_STDIO_USB_LOW_PRIORITY_IRQ);

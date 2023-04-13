@@ -22,6 +22,8 @@ target_link_libraries(panduza_platform_pico INTERFACE
     modbus
 )
 
+
+
 target_link_libraries(panduza_platform_pico PRIVATE
     pico_stdlib_headers
     pico_stdio_usb_headers
