@@ -7,17 +7,20 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive TZ=Europe/Paris \
     g++ \
     make \
     cmake \
+    wget \
     git
 
-RUN apt-get update && DEBIAN_FRONTEND=noninteractive TZ=Europe/Paris \
-    apt-get -y install \
-    gcc-arm-none-eabi
+# RUN apt-get update && DEBIAN_FRONTEND=noninteractive TZ=Europe/Paris \
+#     apt-get -y install \
+#     gcc-arm-none-eabi
 
 WORKDIR /sdk
 
 # Create the directory for platform plugins
 # Then run the platform
-CMD mkdir -p /sdk/examples/pza-pico-modbus-dio/build; \
+CMD cmake --version;\
+    mkdir -p /sdk/examples/pza-pico-modbus-dio/build; \
     cd /sdk/examples/pza-pico-modbus-dio/build;\
-    cmake ..
+    cmake .. &&\
+    make
 
