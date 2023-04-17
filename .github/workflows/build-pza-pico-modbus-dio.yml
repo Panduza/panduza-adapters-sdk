@@ -22,7 +22,7 @@ jobs:
       working-directory: examples/pza-pico-modbus-dio
       run: >
         mkdir -p build
-    
+
     - name: Build configuration
       working-directory: examples/pza-pico-modbus-dio/build
       run: >
@@ -35,3 +35,10 @@ jobs:
         cmake
         --build
         .
+
+    - name: Store artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: build-pico
+        path: examples/pza-pico-modbus-dio/build
+
