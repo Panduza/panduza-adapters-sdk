@@ -36,6 +36,8 @@ jobs:
         --build
         .
 
+    - run: ls -la examples/pza-pico-modbus-dio/build
+
     - name: Store artifacts
       uses: actions/upload-artifact@v3
       with:
