@@ -3,7 +3,7 @@
 go to the current directory
 
 ```bash
-    cd examples/pza-pico-modbus-dio
+ cd examples/pza-pico-modbus-dio
 ```
 
 ```bash 
@@ -16,5 +16,5 @@ go to the current directory
 flash the .uf2 file of the build dir to the pico
 
 ```bash
-    cp pza-pico-modbus-dio.uf2 /media/<user>/RP2_RPI
+ cp pza-pico-modbus-dio.uf2 /media/<user>/RP2_RPI
 ```
