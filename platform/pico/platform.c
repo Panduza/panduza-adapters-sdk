@@ -1,6 +1,7 @@
 #include <pico/stdlib.h>
 #include "hardware/uart.h"
 
+// #define DEBUG
 #ifdef DEBUG
     #define UART_ID uart1
     #define BAUD_RATE 115200
