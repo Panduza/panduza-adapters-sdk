@@ -14,7 +14,3 @@ ${CMAKE_CURRENT_LIST_DIR}/../../interfaces/inc
 target_include_directories(panduza_dio INTERFACE
 ${CMAKE_CURRENT_LIST_DIR}/inc
 )
-
-# target_link_libraries(panduza_dio
-#     panduza::platform
-# )
