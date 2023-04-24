@@ -30,11 +30,11 @@ macro(panduza_platfrom_init TARGET)
     set(CMAKE_DEBUGGER ${PICO_COMPILER_GDB} CACHE FILEPATH "path to gdb")
 
     # # disable usb output, enable uart output
-    pico_enable_stdio_uart(${TARGET} 1)
+    pico_enable_stdio_uart(${TARGET} 0)
     pico_enable_stdio_usb(${TARGET} 1)
 
     # create uf2 
-    pico_add_uf2_output(${TARGET} )
+    pico_add_uf2_output(${TARGET})
     # aditionnal cleanup
     set_property(
         TARGET ${TARGET}
@@ -47,9 +47,11 @@ macro(panduza_platfrom_init TARGET)
         ${TARGET}.uf2
     )
 
-    add_definitions(-DUSBD_VID=0x16C0) # ID_VENDOR_ID
-    add_definitions(-DUSBD_PID=0x05E1) # ID_MODEL_ID
-    add_definitions(-DUSBD_MANUFACTURER="panduza.io") # ID_VENDOR
-    add_definitions(-DUSBD_PRODUCT="dio-modbus") # ID_MODEL
+    target_compile_definitions(${TARGET}
+        USBD_VID=0x16C0 # ID_VENDOR_ID
+        USBD_PID=0x05E1 # ID_MODEL_ID
+        USBD_MANUFACTURER="panduza.io" # ID_VENDOR
+        USBD_PRODUCT="dio-modbus" # ID_MODEL
+    ) 
 
 endmacro()
