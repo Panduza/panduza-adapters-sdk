@@ -1,6 +1,6 @@
 add_library(panduza_platform_pico)
 
-target_sources(panduza_platform_pico PRIVATE
+target_sources(panduza_platform_pico PUBLIC
     ${CMAKE_CURRENT_LIST_DIR}/modbus.c
     ${CMAKE_CURRENT_LIST_DIR}/dio.c
     ${CMAKE_CURRENT_LIST_DIR}/platform.c

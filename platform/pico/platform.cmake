@@ -47,7 +47,7 @@ macro(panduza_platfrom_init TARGET)
         ${TARGET}.uf2
     )
 
-    target_compile_definitions(${TARGET}
+    target_compile_definitions(${TARGET} PRIVATE
         USBD_VID=0x16C0 # ID_VENDOR_ID
         USBD_PID=0x05E1 # ID_MODEL_ID
         USBD_MANUFACTURER="panduza.io" # ID_VENDOR
