@@ -15,5 +15,4 @@ else()
     )
 endif()
 
-
 FetchContent_MakeAvailable(gcc-arm-none-eabi)
