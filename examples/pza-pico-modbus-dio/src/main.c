@@ -1,9 +1,6 @@
 #include "panduza/dio.h"
 #include "panduza/interface.h"
 #include <stdio.h>
-#include <pico/stdlib.h>
-#include "tusb.h"
-
 
 int main()
 {
